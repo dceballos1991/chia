@@ -1,4 +1,4 @@
-import { generateSwitchesAction } from "@/app/actions";
+import { generateSwitchesAction } from "@/server/actions";
 import { SwitchboardContent } from "./SwitchboardFormContent";
 
 export const dynamic = "force-dynamic";

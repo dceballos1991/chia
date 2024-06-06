@@ -1,6 +1,6 @@
 "use client";
 
-import { AiResponse, generateSwitchesAction } from "@/app/actions";
+import { AiResponse, generateSwitchesAction } from "@/server/actions";
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Switch } from "../ui/switch";
@@ -18,7 +18,7 @@ export const SwitchboardContent = ({
   const [result, setResult] = useState<AiResponse>(initResponse);
   const [input, setInput] = useState("");
 
-  const [switches, setSwitches] = useState([true, false, false]);
+  const [switches, setSwitches] = useState([true, true, false]);
 
   const handleToggle = (index: number) => {
     setSwitches((prevSwitches) => {
@@ -29,11 +29,24 @@ export const SwitchboardContent = ({
         .map((isOn, i) => (isOn ? i : null))
         .filter((i) => i !== null);
 
-      if (onIndices.length > 2) {
-        const activeIndices = onIndices.filter((i) => i !== index); // to avoid toggling the current switch
-        const randomIndexToTurnOff =
-          activeIndices[Math.floor(Math.random() * activeIndices.length)];
-        newSwitches[randomIndexToTurnOff as number] = false;
+      if (newSwitches[index]) {
+        // If the toggled switch is turned on
+        if (onIndices.length > 2) {
+          const activeIndices = onIndices.filter((i) => i !== index); // to avoid toggling the current switch
+          const randomIndexToTurnOff =
+            activeIndices[Math.floor(Math.random() * activeIndices.length)];
+          newSwitches[randomIndexToTurnOff as number] = false;
+        }
+      } else {
+        // If the toggled switch is turned off
+        if (onIndices.length < 2) {
+          const offIndices = newSwitches
+            .map((isOn, i) => (!isOn ? i : null))
+            .filter((i) => i !== null);
+          const randomIndexToTurnOn =
+            offIndices[Math.floor(Math.random() * offIndices.length)];
+          newSwitches[randomIndexToTurnOn as number] = true;
+        }
       }
 
       return newSwitches;
@@ -53,7 +66,7 @@ export const SwitchboardContent = ({
       >
         <Input
           value={input}
-          placeholder="Type your dream or goals..."
+          placeholder="tell us what you want or want to be..."
           onChange={(e) => setInput(e.target.value)}
         />
       </form>
