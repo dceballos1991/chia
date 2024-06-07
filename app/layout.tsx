@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { inter } from "./fonts";
 import { CSPostHogProvider } from "./_analytics/provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: "you can't have it all :(",
@@ -29,7 +30,9 @@ export default function RootLayout({
   return (
     <CSPostHogProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <TooltipProvider>
+          <body className={inter.className}>{children}</body>
+        </TooltipProvider>
       </html>
     </CSPostHogProvider>
   );

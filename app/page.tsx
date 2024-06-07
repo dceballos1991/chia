@@ -1,6 +1,8 @@
 import { dmMono } from "./fonts";
 import { Switchboard } from "@/components/Switchboard/Switchboard";
 import { SvgBackground } from "@/components/SvgBackground";
+import { CardContainer } from "@/components/CardContainer";
+import { DockNav } from "@/components/DockNav";
 
 const parseSharedResponse = (searchParams: Record<string, string>) => {
   const paramsArray = Object.keys(searchParams);
@@ -42,12 +44,25 @@ export default function Home({
 
   return (
     <main className="flex w-screen h-screen items-center justify-center p-2 relative">
-      <div className="flex flex-col items-center justify-between max-w-md max-h-[480px] w-full h-full p-2 md:p-4 md:mb-14 backdrop-blur-[2px] bg-transparent z-10 rounded-sm shadow-sm">
+      <CardContainer className="flex-col md:flex-col-reverse md:justify-end justify-between max-h-[480px] h-full md:mb-14 ">
         <Switchboard initDataFromParams={initData} initState={initState} />
-        <h1 className={`text-sm font-bold ${dmMono.className}`}>
+        <h1 className={`text-sm font-bold pb-2 md:pb-0 ${dmMono.className}`}>
           {"cant have it all :("}
         </h1>
-      </div>
+      </CardContainer>
+      <DockNav />
+      <p
+        className={`text-sm absolute bottom-6 md:bottom-8 z-10 text-gray-300 ${dmMono.className}`}
+      >
+        Ⓒ 2024 by{" "}
+        <a
+          className="underline"
+          target="_blank"
+          href="https://www.x.com/dc1b3l"
+        >
+          @dc1b3l
+        </a>
+      </p>
       <SvgBackground />
     </main>
   );
