@@ -12,13 +12,19 @@ export const maxDuration = 0;
 
 export const SwitchboardContent = ({
   initResponse,
+  initState,
 }: {
   initResponse: AiResponse;
+  initState?: boolean[];
 }) => {
   const [result, setResult] = useState<AiResponse>(initResponse);
   const [input, setInput] = useState("");
 
-  const [switches, setSwitches] = useState([true, true, false]);
+  const [switches, setSwitches] = useState([
+    initState?.[0] ?? true,
+    initState?.[1] ?? true,
+    initState?.[2] ?? false,
+  ]);
 
   const handleToggle = (index: number) => {
     setSwitches((prevSwitches) => {
