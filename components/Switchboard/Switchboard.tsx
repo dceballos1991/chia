@@ -18,7 +18,7 @@ export const Switchboard = async ({
   } else {
     initData = await generateSwitchesAction();
   }
-  const initResult = await generateSwitchesAction();
+
   return (
     <div className="flex flex-col w-full mx-auto stretch gap-6">
       <SwitchboardContent initResponse={initData} initState={initState} />

@@ -1,4 +1,5 @@
 import { dmMono } from "./fonts";
+import { TreePalm } from "lucide-react";
 import { Switchboard } from "@/components/Switchboard/Switchboard";
 import { SvgBackground } from "@/components/SvgBackground";
 import { CardContainer } from "@/components/CardContainer";
@@ -41,6 +42,7 @@ export default function Home({
   searchParams: Record<string, string>;
 }) {
   const { initData, initState } = parseSharedResponse(searchParams);
+  const currentYear = new Date().getFullYear();
 
   return (
     <main className="flex w-screen h-screen items-center justify-center p-2 relative">
@@ -52,16 +54,18 @@ export default function Home({
       </CardContainer>
       <DockNav />
       <p
-        className={`text-sm absolute bottom-6 md:bottom-8 z-10 text-gray-300 ${dmMono.className}`}
+        className={`text-sm absolute bottom-6 md:bottom-8 z-10 text-gray-300 flex items-center ${dmMono.className}`}
       >
-        Ⓒ 2024 by{" "}
+        Ⓒ {currentYear} by
         <a
-          className="underline"
+          className="underline mx-1"
           target="_blank"
           href="https://www.x.com/dc1b3l"
         >
           @dc1b3l
         </a>
+        in the Coachella Valley
+        <TreePalm className="h-4 w-4 inline-block ml-1" />
       </p>
       <SvgBackground />
     </main>

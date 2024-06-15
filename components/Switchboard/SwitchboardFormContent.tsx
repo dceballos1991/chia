@@ -1,10 +1,11 @@
 "use client";
 
 import { AiResponse, generateSwitchesAction } from "@/server/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
+import { usePathname, useRouter } from "next/navigation";
 
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const dynamic = "force-dynamic";
@@ -19,12 +20,32 @@ export const SwitchboardContent = ({
 }) => {
   const [result, setResult] = useState<AiResponse>(initResponse);
   const [input, setInput] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [switches, setSwitches] = useState([
     initState?.[0] ?? true,
     initState?.[1] ?? true,
     initState?.[2] ?? false,
   ]);
+
+  useEffect(() => {
+    if (result) {
+      // when a user generates a new response or flips a switch set the search params to the new response
+      const searchParams = new URLSearchParams();
+      // searchParams.set("", "");
+      if (result.userPhrase)
+        searchParams.append(result.userPhrase, switches[0].toString());
+      if (result.phrase1)
+        searchParams.append(result.phrase1, switches[1].toString());
+      if (result.phrase2)
+        searchParams.append(result.phrase2, switches[2].toString());
+
+      const queryString = searchParams.toString();
+      console.log({ pathname, queryString });
+      router.push(pathname + "?" + queryString);
+    }
+  }, [result, switches, router, pathname]);
 
   const handleToggle = (index: number) => {
     setSwitches((prevSwitches) => {
