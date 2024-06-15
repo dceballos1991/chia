@@ -18,6 +18,8 @@ const uniqueId = Math.random().toString(36).substring(2);
 
 export type AiResponse = z.infer<typeof responseSchema>;
 
+const defaultInputs = ["loved", "rich", "filmmaker", "famous", "successful"];
+
 export async function generateSwitchesAction(input: string = "") {
   const result = await generateObject({
     model: openai("gpt-3.5-turbo-0125"),
@@ -27,7 +29,9 @@ export async function generateSwitchesAction(input: string = "") {
     system: systemPrompt,
     temperature: 1.55,
     frequencyPenalty: 0.1,
-    prompt: `userInput: ${input} (add your own input here if user input is empty) (add emoji here)`,
+    prompt: `userInput: ${
+      input || defaultInputs[Math.floor(Math.random() * defaultInputs.length)]
+    } (add your own input here if user input is empty) (add emoji here)`,
   });
   try {
     analyticsServerClient.capture({
