@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ReactNode } from "react";
 
-export function NavDropdown({
+export const NavDropdown = ({
   children,
   title,
   tooltipContent,
@@ -31,7 +31,7 @@ export function NavDropdown({
     onClick?: () => void;
     href?: string;
   }[];
-}) {
+}) => {
   return (
     <DropdownMenu>
       <Tooltip delayDuration={0}>
@@ -81,4 +81,4 @@ export function NavDropdown({
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};

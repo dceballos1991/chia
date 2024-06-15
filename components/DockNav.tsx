@@ -2,7 +2,16 @@
 import { useState } from "react";
 import { CardContainer } from "./CardContainer";
 import { NavDropdown } from "./NavDropdown";
-import { Share, Link, Send, FlaskConical, Ghost } from "lucide-react";
+import {
+  Share,
+  Link,
+  Send,
+  FlaskConical,
+  Ghost,
+  Heart,
+  AudioLines,
+} from "lucide-react";
+import { AboutMePopover } from "./AboutMePopover";
 
 const iconSizeStyles = "h-5 w-5";
 const menuItemIconSize = "h-3 w-3";
@@ -47,6 +56,16 @@ export const DockNav = () => {
       icon: "x.com",
       href: "https://www.x.com/dc1b3l",
     },
+    {
+      title: "hungry hearts",
+      icon: <Heart className="h-4 w-4" />,
+      href: "https://open.spotify.com/artist/1QxEmFYxF3QbTLRekIBafb?si=MRJ1ULzxQPGKxE5U8uxM7g",
+    },
+    {
+      title: "gloom.wav",
+      icon: <AudioLines className="h-4 w-4" />,
+      href: "https://soundcloud.com/user-962728801-920656170",
+    },
   ];
 
   return (
@@ -61,10 +80,11 @@ export const DockNav = () => {
         <NavDropdown
           menuItems={projectsMenuItems}
           tooltipContent={"projects"}
-          title="my projects"
+          title="my projects (and friends)"
         >
           <FlaskConical className={iconSizeStyles} />
         </NavDropdown>
+        <AboutMePopover />
       </nav>
     </CardContainer>
   );

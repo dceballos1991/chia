@@ -1,5 +1,5 @@
 import { dmMono } from "./fonts";
-import { TreePalm } from "lucide-react";
+import { Sun } from "lucide-react";
 import { Switchboard } from "@/components/Switchboard/Switchboard";
 import { SvgBackground } from "@/components/SvgBackground";
 import { CardContainer } from "@/components/CardContainer";
@@ -65,7 +65,7 @@ export default function Home({
           @dc1b3l
         </a>
         in the Coachella Valley
-        <TreePalm className="h-4 w-4 inline-block ml-1" />
+        <Sun className="h-4 w-4 inline-block ml-1" />
       </p>
       <SvgBackground />
     </main>
