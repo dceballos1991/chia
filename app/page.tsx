@@ -45,8 +45,8 @@ export default function Home({
   const currentYear = new Date().getFullYear();
 
   return (
-    <main className="flex w-screen h-screen items-center justify-center p-2 relative">
-      <CardContainer className="flex-col md:flex-col-reverse md:justify-end justify-between max-h-[480px] h-full md:mb-14 ">
+    <main className="flex w-screen h-dvh items-center justify-center p-2 relative">
+      <CardContainer className="flex-col md:flex-col-reverse md:justify-end justify-between max-h-[min(480px,_55%)] h-full md:mb-14 ">
         <Switchboard initDataFromParams={initData} initState={initState} />
         <h1 className={`text-sm font-bold pb-2 md:pb-0 ${dmMono.className}`}>
           {"cant have it all :("}

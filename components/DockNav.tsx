@@ -69,7 +69,7 @@ export const DockNav = () => {
   ];
 
   return (
-    <CardContainer className="absolute bottom-20 justify-center">
+    <CardContainer className="absolute bottom-20 justify-center w-[calc(100%-1rem)]">
       <nav className="w-full flex justify-center gap-2">
         <NavDropdown
           menuItems={shareMenuItems}

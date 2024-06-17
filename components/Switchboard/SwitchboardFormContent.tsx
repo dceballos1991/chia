@@ -42,7 +42,7 @@ export const SwitchboardContent = ({
         searchParams.append(result.phrase2, switches[2].toString());
 
       const queryString = searchParams.toString();
-      console.log({ pathname, queryString });
+
       router.push(pathname + "?" + queryString);
     }
   }, [result, switches, router, pathname]);
